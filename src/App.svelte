@@ -53,7 +53,7 @@
     {/each}
     -->
   <!-- </div> -->
-  <footer>
+  <footer in:fly={{x:-500, duration: 1300}}>
     <span>(c) 2022, Louis Meunier</span>
   </footer>
   {/if}
@@ -95,12 +95,12 @@
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.4rem;
     transition: 1s ease-in-out;
   }
 
   h2 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     /* transition: 1s ease-in-out; */
   }
 
