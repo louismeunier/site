@@ -1,0 +1,27 @@
+:root {
+  font-family: "Lexend", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  --background: #EAE2D7;
+  --text-primary: #2D2824;
+  --text-secondary: #3a4d56;
+  --text-tertiary: #beb09d;
+
+  color: var(--text-primary);
+  background-color: var(--background);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  scroll-behavior: smooth; 
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
