@@ -19,18 +19,39 @@
     }
   ]
   import { fly } from "svelte/transition";
+    import Programming from './lib/Programming.svelte';
+    import About from './lib/About.svelte';
+  let currentPage:"programming"|"notes"|"about"= null; 
 </script>
 
 <div class="wrapper">
-  <!-- <div class="main-wrapper"> -->
-    {#if ready}
+  {#if ready}
     <main>
+      <div class="toc">
       <h1 in:fly={{x: -500, duration: 500}}>louis meunier</h1>
       <div class="contents">
-        <h2 in:fly={{x: -500, duration: 650}} class="disabled">about</h2>
-        {#each sections as section, i}
-          <a in:fly={{x: -500, duration: 800+i*150}}  class="disabled" href="#{section.title}"><h2>{section.title}</h2></a>
-        {/each}
+        <a 
+          in:fly={{x: -500, duration: 650}}  
+          class={`${currentPage === "about" ? "active" : ""}`}
+          on:click={() => {currentPage == "about" ? currentPage = null : currentPage = "about"}}
+          href="#"
+          >
+            <h2>about</h2>
+      </a>
+        <a 
+          in:fly={{x: -500, duration: 800}}  
+          class={`${currentPage === "programming" ? "active" : ""}`}
+          on:click={() => {currentPage == "programming" ? currentPage = null : currentPage = "programming"}}
+          href="#"
+          >
+            <h2>programming</h2>
+      </a>
+      <a 
+        in:fly={{x: -500, duration: 900}} 
+        target="_blank"
+        href="http://notes.louismeunier.net">
+        <h2>notes</h2>
+      </a>
       </div>
       <div class="contents">
         <a in:fly={{x: -500, duration: 1100}} class="external" target="_blank" href="https://github.com/louismeunier">
@@ -40,25 +61,20 @@
           <h2>linkedin</h2>
         </a>
       </div>
-    </main>
-    <!-- {#each sections as section}
-      <Section 
-        title={section.title} 
-        description={section.description} 
-      >
-        {#if section.component}
-          <svelte:component this={section.component}/>
-        {/if}
-      </Section>
-    {/each}
-    -->
-  <!-- </div> -->
+    </div>
+    <div class="display" >
+      {#if currentPage === "programming"}
+        <Programming/>
+      {:else if currentPage === "about"}
+        <About/>
+      {/if}
+    </div>
+  </main>
   <footer in:fly={{x:-500, duration: 1300}}>
     <span>(c) 2022, Louis Meunier</span>
   </footer>
   {/if}
 </div>
-<!-- <svelte:window bind:scrollY={y} /> -->
 
 <style>
   .wrapper {
@@ -70,15 +86,19 @@
     margin: 0;
   }
 
-  .main-wrapper {
+  main {
     flex-grow: 1;
-    padding: 0;
-    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  main {
+  .toc {
+    /* margin-left: 1rem; */
+    overflow: hidden;
+  }
+
+  .toc > * {
     margin-left: 1rem;
-    height: 100vh;
   }
 
   .contents {
@@ -117,10 +137,6 @@
     text-decoration-color: var(--text-secondary);
   }
 
-  a:visited {
-    color: var(--text-primary);
-  }
-
   a.external {
     color: var(--text-secondary);
   }
@@ -129,14 +145,9 @@
     color: var(--text-secondary);
   }
 
-  a.disabled, .disabled {
-    color: var(--text-tertiary);
-    text-decoration: none;
-  }
-
-  a.disabled, .disabled:hover {
-    text-decoration: none;
-    cursor: not-allowed;
+  a.active {
+   color: var(--text-tertiary);
+   text-decoration-color: var(--text-tertiary);
   }
 
   footer {
@@ -147,5 +158,12 @@
   
   span {
     font-size: 0.8rem;
+  }
+
+  .temp {height: 50vh;}
+
+  .display {
+    /* position: absolute; */
+    /* overflow-y: scroll; */
   }
 </style>
