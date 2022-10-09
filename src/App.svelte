@@ -92,6 +92,16 @@
     grid-template-columns: 1fr 1fr;
   }
 
+  /* if screen phone-sized change to grid-template-rows */
+  @media (max-width: 600px) {
+    main {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 2em;
+    }
+  }
+
   .toc {
     /* margin-left: 1rem; */
     overflow: hidden;
