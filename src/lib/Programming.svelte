@@ -35,9 +35,9 @@
                         <a href={project.source}>source </a>{#if project.link} // <a href={project.link}>site</a>{/if}
                     </div>
                 </div>
-                <img width="300em" src={`/public/${project.image}`} alt="placeholder">
+                <img width="300em" src={`public/${project.image}`} alt="placeholder">
             {:else}
-                <img width="300em" src={`/public/${project.image}`} alt="placeholder">
+                <img width="300em" src={`public/${project.image}`} alt="placeholder">
                 <div class="description right">
                     <h4>{project.title}</h4>
                     <!-- <p>auto-updating map of my bike rides</p> -->
